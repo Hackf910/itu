@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Найзууд</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-table {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #2c3e50, #34495e);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            margin-bottom: 30px;
+            border-collapse: collapse;
+        }
+
+        .nav-table td {
+            padding: 12px 25px;
+            text-align: center;
+        }
+
+        .nav-table a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-table a:before {
+            content: "★";
+            margin-right: 8px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        .nav-table a:hover {
+            background: #3498db;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+
+        .nav-table a:active {
+            transform: scale(0.95);
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        p {
+            color: #34495e;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        ol {
+            list-style: none;              /* дугаарлалтыг арилгана */
+            display: flex;                 /* хэвтээ байрлуулна */
+            flex-wrap: wrap;               /* дэлгэц багтвал дараагийн мөрөнд орно */
+            justify-content: center;       /* голлуулна */
+            gap: 30px;                     /* хоорондын зай */
+            padding: 0;
+            margin: 20px auto;
+        }
+
+        ol li {
+            display: flex;
+            flex-direction: column;        /* зураг доороо нэртэй */
+            align-items: center;           /* дотор нь голлуулна */
+            font-size: 1.1em;
+            color: #34495e;
+        }
+
+        ol li img {
+            border-radius: 50%;
+            border: 3px solid #3498db;
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            vertical-align: middle;
+            margin-right: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        ol li img:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul li {
+                margin: 5px;
+            }
+
+            nav ul li a {
+                font-size: 1em;
+                padding: 8px 15px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Миний найзууд</h1>
+        
+        <table class="nav-table">
+            <tr>
+                <td><a href="index.html">Нүүр</a></td>
+                <td><a href="myself.html">Миний тухай</a></td>
+                <td><a href="family.html">Миний гэр бүл</a></td>
+                <td><a href="friends.html">Найзууд</a></td>
+                <td><a href="contact.html">Холбоо барих</a></td>
+            </tr>
+        </table>
+        
+        <div class="content">
+            <p>Энд миний хэдэн найзуудын зургийг харуулж байна:</p>
+            <ol>
+                <li>
+                    <a href="https://www.facebook.com/bayraa.bayrbileg.92" target="_blank">
+                    <img src="https://scontent.fuln6-1.fna.fbcdn.net/v/t39.30808-6/326271303_911105180321190_5415634566429886514_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=nonkfnCNmJsQ7kNvwGvfxNP&_nc_oc=Adng3m5nqma6wy4rfl1ftU6hBCdg11GGF_MSwaDC54Twc5jQ-8RpSHQGeNgdSoDjelI&_nc_zt=23&_nc_ht=scontent.fuln6-1.fna&_nc_gid=kpZLsvFAYpq8ptRvtBYzNg&oh=00_AffB24MUjAMDF_7ySeHE5r6b17Se-mSPS_4H74i8v8Eh5A&oe=68E50C24" alt="Найз 1"> 
+                    </a>
+                    <br>Баяраа
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/munkherdene.avirmed.9" target="_blank">
+                    <img src="https://scontent.fuln6-1.fna.fbcdn.net/v/t39.30808-1/466125592_1665821767319283_1071415315754335391_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=101&ccb=1-7&_nc_sid=e99d92&_nc_ohc=6vigy84osAQQ7kNvwEqMj8v&_nc_oc=AdlUsmSX2Xq_ZXv8aNgsB9kG120kO_HpOPk8ESx3T0nB3iJXurmJy_asJCClblLGAfQ&_nc_zt=24&_nc_ht=scontent.fuln6-1.fna&_nc_gid=2bjNEvojVe5G618eytGJAQ&oh=00_AfchZg-a-ZVkhCw7Mn5LshARVZD55WPUttFaOBUl4vun5A&oe=68E52136" alt="Найз 2"> 
+                    </a>
+                    <br>Эрдэнэ
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/m.nh.orgil.56234" target="_blank">
+                    <img src="https://scontent.fuln6-3.fna.fbcdn.net/v/t39.30808-1/326186876_737664290867313_1060099326109525732_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=105&ccb=1-7&_nc_sid=1d2534&_nc_ohc=znlTuoYaZkgQ7kNvwFTaz0U&_nc_oc=AdlE_dk17btB_luoqkCEuVPVUksYx1B-1jSC69gyOSuFwECH8D7AHhKV4A2Dz_MDeTU&_nc_zt=24&_nc_ht=scontent.fuln6-3.fna&_nc_gid=rqoUk-HSKTjEy16GyQoO9Q&oh=00_AffWAdvoDvB5E1XoFNZOXwHmVahwG8rGq32IepVyLQlIqw&oe=68E50972" alt="Найз 3"> 
+                    </a>
+                    <br>Оргио
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/buyansan" target="_blank">
+                    <img src="https://scontent.fuln6-3.fna.fbcdn.net/v/t39.30808-6/480197806_1091778736035115_5060245645520170752_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=109&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=N905FQ4qDOgQ7kNvwH2qZUX&_nc_oc=AdmyOdlzaQ08mnhIbWgZiXic749_JRVuWoXOFBRfxDZMlGIr75lrKbJAEMMNJ-Zapgc&_nc_zt=23&_nc_ht=scontent.fuln6-3.fna&_nc_gid=8WrUtd15dE1TLpAouDlUcg&oh=00_AfdfTAZPorFevgXLZKi2yw9Pkx0F_QcE9wF6LmPfaJWDxw&oe=68E531C5" alt="Найз 4"> 
+                    </a>
+                    <br>Буяаа
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/ochkuu.tsog.9" target="_blank">
+                    <img src="https://scontent.fuln6-2.fna.fbcdn.net/v/t39.30808-1/555911604_1259796605902875_1018366841794995503_n.jpg?stp=cp6_dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=1d2534&_nc_ohc=O8mbzQTwR7EQ7kNvwGvYOCT&_nc_oc=AdlnauJSwUddAUF4zUwEYYTotBcBX8-uXo6JDTm1L7Fr75B4RFmkgd-ASRz-0ewo894&_nc_zt=24&_nc_ht=scontent.fuln6-2.fna&_nc_gid=I3QaFXQZtJiQBRj3PGh-vQ&oh=00_AfdeZzkz8jlBhg2vcI3T_UugpaBvNSezhJAgdc2lsRyw0Q&oe=68E517B7" alt="Найз 5"> 
+                    </a>
+                    <br>Очхүү
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/hshsuh.ssgehdud" target="_blank">
+                    <img src="https://scontent.fuln6-2.fna.fbcdn.net/v/t39.30808-1/467520811_1272313014191246_4909371048126769034_n.jpg?stp=dst-jpg_s480x480_tt6&_nc_cat=108&ccb=1-7&_nc_sid=e99d92&_nc_ohc=zSSb9s85DT8Q7kNvwGypS0s&_nc_oc=AdnkiI2hYl8QfP513oX1DyXiiJ6Lj6yJMEG9ISMi3peaeLY0_fj4s_LNZ21qbgeeqSk&_nc_zt=24&_nc_ht=scontent.fuln6-2.fna&_nc_gid=4dnHqqCL_TOm4WvWNo-cNw&oh=00_AfeS96jaRaTiUjqxdhaqnqC8zESFjaV9JCNK2-JJQ-8Yfw&oe=68E52E4A" alt="Найз 6"> 
+                    </a>
+                    <br>Амгаа
+                </li>
+                
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

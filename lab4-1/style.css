@@ -1,0 +1,170 @@
+*{
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+}
+
+body{
+  background-color: black;
+  color: white;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container{
+  position: relative;
+  width: 100%;
+  min-width: 1000px;
+  min-height: 1000px;
+  background: #fff;
+  margin: 50px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.container .left{
+  position: relative;
+  background: #167216;
+  padding: 40px;
+}
+.container .rigth{
+  position: relative;
+  background: #fff;
+  padding: 40px;
+}
+.profileText{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.profileText .profileImg{
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.profileText .profileImg img{
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.profileText h2{
+  color: #fff;
+  font-size: 1.5em;
+  margin-top: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+  line-height: 1.4em;
+}
+.profileText h2 span{
+  font-size: 0.7em;
+  font-weight: 300;
+}
+.info{
+  padding: 40px;
+}
+.title{
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  margin-bottom: 20px;
+}
+.info ul{
+  position:relative;
+}
+.info ul li{
+  position:relative;
+  list-style: none;
+  margin: 10px;
+}
+.info ul li .icon{
+  display: inline-block;
+  width: 30px;
+  font-size: 20px;
+  color: #0af7d7;
+}
+.info ul li span{
+  color:#fff;
+  font-weight: 200;
+}
+.skills{
+  padding: 40px;
+}
+.skills ul{
+  position: relative;
+}
+.skills ul li{
+  position: relative;
+  list-style-type: disc;
+  margin: 10px;
+}
+.skills ul li span{
+  color:#fff;
+  font-weight: 200;
+}
+.hobbies{
+  padding: 40px;
+}
+.hobbies ul{
+  position: relative;
+}
+.hobbies ul li{
+  position: relative;
+  list-style-type: disc;
+  margin: 10px;
+}
+.hobbies ul li span{
+  color:#fff;
+  font-weight: 200;
+}
+.about h2{
+  color:black;
+  font-weight: bold;
+  font-size: 30px;
+}
+.about p{
+  color:black;
+  font-size:15px;
+  display: flex;
+}
+.Experience{
+  color:black;
+}
+.turshlaga{
+  color:black;
+  padding: 40px;
+  padding-left: 0;
+  font-weight: bold;
+}
+.Experience h3{
+  position: relative;
+  padding-left:30px;
+}
+.Experience .subtitle2{
+  padding-top:50px;
+}
+.Experience ul {
+  position: relative;
+  padding-top: 10px;
+  padding-left:40px;
+}
+.Experience ul li{
+  padding: 5px;
+  color: green;
+}
+.Experience ul li a{
+  color:green;
+}
+.linuxsection img{
+  width: 400px;
+  align-items: center;
+}

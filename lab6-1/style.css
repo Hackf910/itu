@@ -1,0 +1,505 @@
+.hidden_title{
+    display:none;
+}
+
+.head{
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    min-height: 50px;
+    position: fixed;
+    z-index: 2;
+}
+
+.head nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.head div{
+    align-content: center;
+}
+
+.div1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 700px ;
+    font-size: 30px;
+    background-color: RGB(245, 245, 247);
+}
+
+.div1 p{
+    font-size: 15px;
+    color:gray
+}
+
+b{
+    font-size: 50px;
+}
+
+.div2{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    padding: none;
+    border: none;
+    font-size: 25px;
+    z-index: 100;
+    background-color: black;
+}
+.Bitten-Apple-button{
+    color: white;
+    border: 2px solid white;
+    border-radius: 50px;
+    padding: 10px;
+    min-width: 150px;   
+    font-size: 20px;  
+    margin-top: 40px;
+}
+
+.div2 img{
+    position: relative;
+    margin-top: -270px;
+    width: 80%;
+    z-index: -1;
+}
+
+.div3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 10px solid;
+    border-color: white;
+    font-size: 20px;
+    padding: 30px;
+
+    background-color: RGB(245, 245, 247);
+}
+
+.div3 div{
+    justify-content: center;
+    justify-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.div3 h2 {
+    font-size: 30px;
+}
+
+.div4{
+    display: flex;
+    justify-content: space-between;
+    min-height: 700px ;
+    font-size: 15px;
+    color:gray;
+    flex-direction: row;
+}
+
+.div4 p{
+    font-size: 15px;
+}
+
+
+/* .img1{
+    width: 20%;
+} */
+
+.img2{
+    width: 100%;
+    position: relative;
+    margin: 30px;
+   
+}
+
+button{
+    background-color: #008be2;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px;
+    min-width: 120px;   
+    font-size: 20px;  
+}
+button a{
+    color: white;   
+}
+
+.button1{
+    background-color: black;
+    border: 2px solid #24a0ed;
+    color: #24a0ed;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+.image-row {
+    display: flex;
+    width: 100%;
+    height: 600px;
+    gap: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+.video-row {
+    display: flex;
+    width: 100%;
+    height: 300px;
+    gap: 10px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+.image-container {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+.left-peek {
+    width: 15%;
+    min-width: 100px;
+}
+
+.left-peek img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    position: absolute;
+    right: 0;
+}
+
+.center-full {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.center-full img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.right-peek {
+    width: 15%;
+    min-width: 100px;
+}
+.right-peek img {
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+}
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: RGB(245, 245, 247);
+    font-size: 20px;
+    color: gray;
+}
+
+/* 📱 Гар утас (0-768px) */
+@media only screen and (max-width: 768px) {
+    /* Header Navigation */
+    .head nav a {
+        font-size: 10px;
+        padding: 5px 3px;
+    }
+    
+    .head nav i {
+        font-size: 12px;
+    }
+    
+    /* Main Sections */
+    .div1, .div2 {
+        min-height: 500px;
+        font-size: 20px;
+        padding: 20px 10px;
+    }
+    
+    .div1 b, .div2 b {
+        font-size: 30px;
+    }
+    
+    .div1 p {
+        font-size: 12px;
+        padding: 0 15px;
+    }
+    
+    /* Buttons */
+    button {
+        min-width: 100px;
+        font-size: 16px;
+        padding: 8px;
+    }
+    
+    .Bitten-Apple-button {
+        min-width: 120px;
+        font-size: 18px;
+    }
+    
+    /* Images */
+    .div2 img {
+        width: 100%;
+        margin-top: -180px;
+    }
+    
+    .img2 {
+        width: 100%;
+        margin: 15px 0;
+    }
+    
+    /* Grid Sections */
+    .div3 {
+        border: 5px solid white;
+        padding: 15px;
+        font-size: 16px;
+    }
+    
+    .div3 h2 {
+        font-size: 22px;
+    }
+    
+    /* Image Row - Stack Vertically */
+    .image-row {
+        flex-direction: column;
+        height: auto;
+        gap: 5px;
+    }
+    
+    .image-container.left-peek,
+    .image-container.center-full,
+    .image-container.right-peek {
+        width: 100%;
+        height: 250px;
+    }
+    
+    .left-peek img,
+    .center-full img,
+    .right-peek img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    /* Video Row */
+    .video-row {
+        flex-direction: column;
+        height: auto;
+        gap: 5px;
+    }
+    
+    .video-row .image-container {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .video-row img {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+    
+    /* Footer Grid */
+    .div4 {
+        flex-direction: column;
+        min-height: auto;
+        font-size: 13px;
+    }
+    
+    .div4 .col-2 {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    footer {
+        flex-direction: column;
+        font-size: 16px;
+        padding: 20px;
+        gap: 10px;
+    }
+    
+    footer a {
+        margin: 5px 0;
+    }
+}
+
+/* 📱 Таблет (769px-1024px) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    /* Header */
+    .head nav a {
+        font-size: 12px;
+        padding: 8px 5px;
+    }
+    
+    /* Main Sections */
+    .div1, .div2 {
+        min-height: 600px;
+        font-size: 25px;
+    }
+    
+    .div1 b, .div2 b {
+        font-size: 40px;
+    }
+    
+    /* Buttons */
+    button {
+        min-width: 110px;
+        font-size: 18px;
+    }
+    
+    /* Images */
+    .div2 img {
+        width: 90%;
+        margin-top: -220px;
+    }
+    
+    .img2 {
+        width: 100%;
+        margin: 20px 0;
+    }
+    
+    /* Grid Sections */
+    .div3 {
+        border: 7px solid white;
+        padding: 20px;
+        font-size: 18px;
+    }
+    
+    .div3 h2 {
+        font-size: 26px;
+    }
+    
+    /* Image Row - Adjust Sizes */
+    .image-row {
+        height: 450px;
+    }
+    
+    .left-peek, .right-peek {
+        width: 12%;
+    }
+    
+    /* Video Row */
+    .video-row {
+        height: 250px;
+    }
+    
+    .video-row .left-peek,
+    .video-row .right-peek {
+        width: 10%;
+    }
+    
+    .video-row .ratio {
+        width: 15%;
+    }
+    
+    /* Footer */
+    .div4 {
+        flex-wrap: wrap;
+        min-height: auto;
+    }
+    
+    .div4 .col-2 {
+        width: 45%;
+        margin-bottom: 30px;
+    }
+    
+    footer {
+        font-size: 18px;
+        padding: 15px;
+    }
+}
+
+/* 💻 Компьютер (1025px+) */
+@media only screen and (min-width: 1025px) {
+    /* Header */
+    .head nav a {
+        font-size: 14px;
+        padding: 10px 8px;
+        transition: color 0.3s ease;
+    }
+    
+    .head nav a:hover {
+        color: #007aff;
+    }
+    
+    /* Buttons Hover */
+    button {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    
+    /* Image Row - Full Width */
+    .image-row {
+        height: 600px;
+    }
+    
+    /* Video Row */
+    .video-row {
+        height: 300px;
+    }
+    
+    /* Footer Grid */
+    .div4 {
+        min-height: 700px;
+    }
+    
+    .div4 .col-2 {
+        width: 20%;
+    }
+}
+
+/* 🖥️ Маш том дэлгэц (1440px+) */
+@media only screen and (min-width: 1440px) {
+    .div1, .div2 {
+        min-height: 800px;
+        font-size: 35px;
+    }
+    
+    .div1 b, .div2 b {
+        font-size: 60px;
+    }
+    
+    .image-row {
+        height: 700px;
+    }
+    
+    .video-row {
+        height: 350px;
+    }
+    
+    button {
+        min-width: 140px;
+        font-size: 22px;
+    }
+}
+
+/* 📱 Утасны хэвтээ байдал */
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+    .div1, .div2 {
+        min-height: 400px;
+    }
+    
+    .image-row {
+        height: 300px;
+    }
+    
+    .head nav a {
+        font-size: 9px;
+        padding: 3px 2px;
+    }
+}

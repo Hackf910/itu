@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нүүр хуудас</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        } 
+        
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+.nav-table {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #2c3e50, #34495e);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            margin-bottom: 30px;
+            border-collapse: collapse;
+        }
+
+        .nav-table td {
+            padding: 12px 25px;
+            text-align: center;
+        }
+
+        .nav-table a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-table a:before {
+            content: "★";
+            margin-right: 8px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        .nav-table a:hover {
+            background: #3498db;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+
+        .nav-table a:active {
+            transform: scale(0.95);
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        p {
+            color: #34495e;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        img {
+            border-radius: 0;
+            border: 5px solid #3498db;
+            width: 400px;
+            height: 300px;
+            object-fit: cover;
+            margin: 20px auto;
+            display: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul li {
+                margin: 5px;
+            }
+
+            nav ul li a {
+                font-size: 1em;
+                padding: 8px 15px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Сайн байна уу! Миний танилцуулга вэб сайт</h1>
+        
+        
+        <table class="nav-table">
+            <tr>
+                <td><a href="index.html">Нүүр</a></td>
+                <td><a href="myself.html">Миний тухай</a></td>
+                <td><a href="family.html">Миний гэр бүл</a></td>
+                <td><a href="friends.html">Найзууд</a></td>
+                <td><a href="contact.html">Холбоо барих</a></td>
+            </tr>
+        </table>
+        
+        <div class="content">
+            <p>Эндээс та миний тухай мэдээлэл авна уу. Энэ бол миний өөрийн тухай вэб сайт бөгөөд та бүхэнтэй хуваалцахдаа баяртай байна!</p>
+            <img src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?s=612x612&w=0&k=20&c=A63koPKaCyIwQWOTFBRWXj_PwCrR4cEoOw2S9Q7yVl8=" alt="байгалийн зураг">
+        </div>
+    </div>
+</body>
+</html>

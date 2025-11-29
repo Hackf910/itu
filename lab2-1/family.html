@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Миний гэр бүл</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #acb6e5);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+       .nav-table {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #2c3e50, #34495e);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            margin-bottom: 30px;
+            border-collapse: collapse;
+        }
+
+        .nav-table td {
+            padding: 12px 25px;
+            text-align: center;
+        }
+
+        .nav-table a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-table a:before {
+            content: "★";
+            margin-right: 8px;
+            font-size: 0.9em;
+            opacity: 0.7;
+        }
+
+        .nav-table a:hover {
+            background: #3498db;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+        }
+
+        .nav-table a:active {
+            transform: scale(0.95);
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        p {
+            color: #34495e;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #ecf0f1;
+        }
+
+        img {
+            border-radius: 50%;
+            border: 5px solid #3498db;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin: 20px auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            nav ul li {
+                margin: 5px;
+            }
+
+            nav ul li a {
+                font-size: 1em;
+                padding: 8px 15px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            table {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Миний гэр бүл</h1>
+        
+        <table class="nav-table">
+            <tr>
+                <td><a href="index.html">Нүүр</a></td>
+                <td><a href="myself.html">Миний тухай</a></td>
+                <td><a href="family.html">Миний гэр бүл</a></td>
+                <td><a href="friends.html">Найзууд</a></td>
+                <td><a href="contact.html">Холбоо барих</a></td>
+            </tr>
+        </table>
+        
+        <div class="content">
+            <p>Миний гэр бүлд: Ээж, аав, дүү нар байдаг. Бид увс -д амьдардаг.</p>
+            <table>
+                <tr>
+                    <th>Гишүүн</th>
+                    <th>Нас</th>
+                    <th>Мэргэжил</th>
+                </tr>
+                <tr>
+                    <td>Ээж</td>
+                    <td>49</td>
+                    <td>Хими технологич</td>
+                </tr>
+                <tr>
+                    <td>Аав</td>
+                    <td>50</td>
+                    <td>Ойн инженер</td>
+                </tr>
+                <tr>
+                    <td>Дүү</td>
+                    <td>17</td>
+                    <td>Сурагч</td>
+                </tr>
+                <tr>
+                    <td>Дүү</td>
+                    <td>13</td>
+                    <td>Сурагч</td>
+                </tr>
+                <tr>
+                    <td>Би</td>
+                    <td>19</td>
+                    <td>Оюутан</td>
+                </tr>
+            </table>
+            <img src="ger bul.jpg" alt="Гэр бүлийн зураг">
+        </div>
+    </div>
+</body>
+</html>
