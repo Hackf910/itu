@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>5r bodlogo</title>
+</head>
+<body>
+    <div class="aall">
+        <div class="container">
+            <a href ="index.html"><button class="button">Back</button></a>
+        </div>
+        <div class="container">
+            <a href ="5.html"><button class="button">Refresh</button></a>
+        </div>
+    </div>
+    <h1>5r bodlogo: </h1>
+    <script>
+        
+        function timeCalc(num){
+            const hour = new Date().getHours();
+                
+            if (hour >= 6 && hour < 18) {
+                return { 
+                    type: "Kvadrat zereg", 
+                    result: Math.pow(num, 2) 
+                };
+            } else {
+                return { 
+                    type: "Yzguur", 
+                    result: Math.sqrt(num) 
+                };
+            }
+        }
+        
+        let n = parseInt(prompt("Neg too oruulna uu:"));
+        
+        let answer = timeCalc(n);
+        
+        document.write("<h1>Төрөл: " + answer.type + "<br>Үр дүн: " + answer.result + "</h1>");
+        
+        </Script>      
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>2r bodlogo</title>
+</head>
+<body>
+    <div class="aall">
+        <div class="container">
+            <a href="index.html"><button class="button">Back</button></a>
+        </div>
+        <div class="container">
+            <a href="2.html"><button class="button">Refresh</button></a>
+        </div>
+    </div>
+    <h1>2r bodlogiin hariu bol: </h1>
+    <script>
+        var chono=prompt("Chono her hurdan be? (km/h)");
+        var Tuulai=prompt("Tuulai her hurdan be? (km/h)");
+        var zai=prompt("Chono bolon tuulain hoorondoh zai ymar baih ve? (m)");
+        var time=zai/((chono*1000/60/60)-(Tuulai*1000/60/60));
+        document.write("<h2>Chono tuulaig guitseh hugatsaa n: "+time.toFixed(2)+" seconds</h2>");
+    </script>
+</body>
+</html>

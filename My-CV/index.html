@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="mn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Товч намтар — Tsendee Tsendee</title>
+  <style>
+    /* Энгийн, цэвэр CV загвар */
+    :root{--accent:#0b74de;--muted:#666;font-family:Inter, Roboto, Arial, sans-serif}
+    body{margin:0;padding:20px;background:#f6f8fb;color:#111;font-family:var(--muted)}
+    .card{max-width:900px;margin:20px auto;background:#fff;border-radius:12px;box-shadow:0 6px 24px rgba(16,24,40,0.08);overflow:hidden}
+    .grid{display:grid;grid-template-columns:1fr 2fr}
+    header{background:linear-gradient(90deg,var(--accent),#4aa3ff);color:#fff;padding:28px}
+    .name{font-size:28px;margin:0;font-weight:700}
+    .role{opacity:.95;margin-top:6px}
+    .left{padding:20px;background:#f9fbff}
+    .right{padding:24px}
+    .section{margin-bottom:18px}
+    h3{margin:0 0 8px 0;font-size:16px;color:#0d0d0d}
+    p{margin:0 0 8px 0;line-height:1.45}
+    ul{margin:6px 0 12px 18px}
+    .skills span{display:inline-block;margin:6px 8px 6px 0;padding:6px 10px;border-radius:999px;background:#eef6ff;font-size:13px}
+    .contact{font-size:14px}
+    @media (max-width:800px){.grid{grid-template-columns:1fr}.left{order:2}.right{order:1}}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <header>
+      <div class="name">Tsendee Tsendee</div>
+      <div class="role">Студент — Програм хангамж, Өгөгдлийн сан</div>
+    </header>
+
+    <div class="grid">
+      <aside class="left">
+        <div class="section contact">
+          <h3>Холбоо</h3>
+          <p>И-мэйл: tsendee@example.com<br>Утас: +976 99 123456<br>Хаяг: Улаанбаатар, Монгол</p>
+        </div>
+
+        <div class="section">
+          <h3>Хугацаа</h3>
+          <p>Суралцаж буй чиглэл: Програм хангамж, C/C++, Өгөгдлийн сан</p>
+        </div>
+
+        <div class="section">
+          <h3>Техник ур чадвар</h3>
+          <div class="skills">
+            <span>C</span><span>C++</span><span>SQL</span><span>PowerPoint</span><span>Linux</span><span>Wireshark</span>
+          </div>
+        </div>
+
+        <div class="section">
+          <h3>Сонирхол</h3>
+          <p>Өгөгдлийн сангийн загварчлал, Микросервис, Програм хангамжийн инженерчлэл</p>
+        </div>
+      </aside>
+
+      <main class="right">
+        <div class="section">
+          <h3>Танилцуулга</h3>
+          <p>Шинэ мэдлэг хурдан олдог, бие даасан төсөл дээр ажиллах дуртай оюутан. Өгөгдлийн сан болон програмчлалын суурь ойлголтуудад сайн суурьтай.</p>
+        </div>
+
+        <div class="section">
+          <h3>Төслүүд</h3>
+          <p><strong>Dream Home</strong> — Өгөгдлийн сангийн бүтцийн тайлан, хүснэгтүүд болон багануудын өгөгдлийн төрлийг тодорхойлов.</p>
+          <p><strong>Relational Algebra vs SQL</strong> — Харьцуулсан тайлан, SQL үр дүнгийн жишээг боловсруулсан.</p>
+        </div>
+
+        <div class="section">
+          <h3>Боловсрол</h3>
+          <p>Оюутан — Компьютерийн шинжлэл / Програм хангамж (олон нийтийн курс, тасралтгүй суралцаж байна)</p>
+        </div>
+
+        <div class="section">
+          <h3>Нэмэлт</h3>
+          <p>Хэл: Монгол (эх), Англи (суурь). Хувийн шинж: анхааралтай, зорилготой.</p>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Тохируулах: Нэр, холбоо, ур чадваруудыг өөрчилж CV-г өөртөө тохируулна уу -->
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>4r bodlogo</title>
+</head>
+<body>
+    <div class="aall">
+        <div class="container">
+            <a href ="index.html"><button class="button">Back</button></a>
+        </div>
+        <div class="container">
+            <a href ="4.html"><button class="button">Refresh</button></a>
+        </div>
+    </div>
+    <h1>4r bodlogo: </h1>
+    <script>
+        function gcd(a, b) {
+            while (b !== 0) {
+                let temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return a;
+        }
+        function lcm(a, b) {
+            return (a * b) / gcd(a, b);
+        }
+        let numbers = [];
+        let n=parseInt(prompt("heden too oruulah ve?"));
+        for (let i = 0; i < n; i++) {
+            let num = parseInt(prompt(" Too oruulna uu: "));
+            numbers.push(num);
+        }
+        let result = numbers[0];
+        for (let i = 1; i < numbers.length; i++) {
+            result = lcm(result, numbers[i]);
+        }
+        document.write("Oruulsan "+n+" shirheg toonii hamgiin baga yronhii huvaagdagch: " + result);
+    </script>    
+</body>
+</html>

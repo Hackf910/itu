@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>First exam</title>
+</head>
+<body>
+    <div class="aall">
+        <div class="container">
+            <a href ="index.html"><button class="button">Back</button></a>
+        </div>
+        <div class="container">
+            <a href ="1.html"><button class="button">Refresh</button></a>
+        </div>
+    </div>
+    <h1>Hariu bol: </h1>
+    <script>
+        var a=parseInt(prompt("Neg too oruulna uu"));
+        var c=a;
+        var b=0;
+        while(c>0){
+            var k=c%10;
+            b+=k;
+            c=Math.floor(c/10);
+        }
+        var d=b;
+        var p=0;
+        while(b>0){
+            var k=b%10;
+            p=p*10+k;
+            b=Math.floor(b/10);
+        }
+        if(d==p && d>9){
+            document.write("<h1>Palindrome</h1>");
+        }else{
+            document.write("<h1>Palindrome bish</h1>");
+        }
+    </script>
+</body>
+</html>
