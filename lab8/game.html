@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hangman Game</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: url(https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3253300/header.jpg?t=1732659042);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+h1 {
+    text-align: center;
+    color: #22ff00;
+    margin-bottom: 30px;
+    font-size: 3em;
+    letter-spacing: 10px;
+}
+#ehnii-container{
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    float: left;
+}
+.togloomiin_medegdel {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+}
+.score-display {
+    color: #00ff2f;
+    font-weight: bold;
+}
+
+.hangman-display {
+    position:relative;
+    float:right;
+    text-align: center;
+    margin: 30px 0;
+}
+img{
+    border-radius: 10px;
+}
+.hangman-image {
+    max-width: 300px;
+    height: auto;
+}
+
+.question-container {
+    background: #f8f9ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    border-left: 5px ;
+}
+
+.question-container p {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: 500;
+}
+
+.answer-container {
+
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.letter-box {
+    width: 50px;
+    height: 60px;
+    border: 3px ;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #00f800;
+    text-transform: uppercase;
+    background: white;
+    transition: all 0.3s;
+}
+
+.letter-box.filled {
+    background: #00fe04;
+    color: white;
+    transform: scale(1.1);
+}
+
+.keyboard-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 30px;
+    width: 600px;
+}
+
+.keyboard-key {
+    padding: 15px 10px;
+    background: #147600;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+}
+
+.keyboard-key:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.game-message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.3em;
+    font-weight: bold;
+    min-height: 30px;
+}
+
+.game-message.win {
+    color: #28a745;
+}
+
+.game-message.lose {
+    color: #dc3545;
+}
+
+.next-button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 15px 40px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.next-button:hover {
+    background: #218838;
+    transform: scale(1.05);
+}
+
+.restart-button {
+    display: block;
+    margin: 20px auto 0;
+    padding: 15px 40px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.hidden {
+    display: none;
+}
+</style>
+</head>
+<body>
+<div class="game-container" id="ehnii-container">
+    <h1>H A N G M A N</h1>
+    
+    <div class="togloomiin_medegdel">
+        <div class="score-display">Асуулт: <span id="odoogiinAsuult">1</span>/5</div>&nbsp;&nbsp;&nbsp;
+        <div class="score-display">Алдаа: <span id="asuultTooloh">0</span>/5</div>&nbsp;&nbsp;&nbsp;
+    </div>
+</div>
+    <div class="hangman-display">
+        <img id="hangmanImage" class="hangman-image" src="duujluur.jpg" alt="Hangman">
+    </div>
+<div class="game-container" id="hoyr-container">
+    <div class="question-container">
+        <p id="questionText">Асуулт...</p>
+    </div>
+
+    <div class="answer-container" id="answerBoxes"></div>
+
+    <div class="keyboard-container" id="keyboardContainer"></div>
+    <div class="game-message" id="gameMessage"></div>
+    
+    <button class="next-button hidden" id="nextButton">Дараагийн асуулт</button>
+    <button class="restart-button hidden" id="restartButton">Дахин эхлэх</button>
+</div>
+
+<script>
+const asuultuud = [
+    { asuult: "Mongol ulsiin niislel hotiin ner?", hariult: "ULAANBAATAR" },
+    { asuult: "Delhiin hamgiin tom dalain ner?", hariult: "PACIFIC" },
+    { asuult: "Mongoliin hamgiin tom nuuriin ner?", hariult: "UVS" },
+    { asuult: "Odoo ymar tootoi sar bolj baigaa ve? (angli usger)", hariult: "TWELVE" },
+    { asuult: "Narni aimgiin hamgiin tom garagin ner?(angliar)", hariult: "JUPITER" }
+];
+
+let odoogiin_asuult_index = 0;
+let onoo = 0;
+let aldaa = 0;
+let odoogiin_ug = '';
+let darsan_usguud = [];
+let togloom_idewhtei = true;
+
+const hangman_zurag = [
+    'duujluur.jpg',
+    'tolgoi.jpg',
+    'tolgoitoi biy.jpg',
+    'tolgoi biy hol.jpg',
+    'gar.jpg',
+    'uhel.jpg'
+];
+
+const asuult_text = document.getElementById('questionText');
+const hariult_hairtsag = document.getElementById('answerBoxes');
+const keyboard_container = document.getElementById('keyboardContainer');
+const togloomiin_message = document.getElementById('gameMessage');
+const daraagiin_towch = document.getElementById('nextButton');
+const dahin_ehle_towch = document.getElementById('restartButton');
+const odoogiin_asuult_span = document.getElementById('odoogiinAsuult');
+const onoo_span = document.getElementById('OnooniiUtga');
+const aldaa_span = document.getElementById('asuultTooloh');
+const hangman_zurag_elem = document.getElementById('hangmanImage');
+
+function togloom_ehluuleh() {
+    if (odoogiin_asuult_index >= asuultuud.length) {
+        togloom_duusgah();
+        return;
+    }
+
+    const odoogiin = asuultuud[odoogiin_asuult_index];
+    odoogiin_ug = odoogiin.hariult.toUpperCase();
+    darsan_usguud = [];
+    aldaa = 0;
+    togloom_idewhtei = true;
+
+    asuult_text.textContent = odoogiin.asuult;
+    odoogiin_asuult_span.textContent = odoogiin_asuult_index + 1;
+    aldaa_span.textContent = aldaa;
+    togloomiin_message.textContent = '';
+    togloomiin_message.className = 'game-message';
+    daraagiin_towch.classList.add('hidden');
+    
+    hangman_zurag_elem.src = hangman_zurag[0];
+    hariult_hairtsag.innerHTML = '';
+    for (let i = 0; i < odoogiin_ug.length; i++) {
+        const haiurtsag = document.createElement('div');
+        haiurtsag.className = 'letter-box';
+        haiurtsag.dataset.index = i;
+        if (odoogiin_ug[i] === ' ') {
+            haiurtsag.style.border = 'none';
+            haiurtsag.style.background = 'transparent';
+        }
+        hariult_hairtsag.appendChild(haiurtsag);
+    }
+    keyboard_uusgeh();
+}
+
+function keyboard_uusgeh() {
+    keyboard_container.innerHTML = '';
+    const usguud = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    
+    for (let useg of usguud) {
+        const towch = document.createElement('button');
+        towch.className = 'keyboard-key';
+        towch.textContent = useg;
+        towch.addEventListener('click', () => useg_shalgah(useg, towch));
+        keyboard_container.appendChild(towch);
+    }
+}
+
+function useg_shalgah(useg, towch) {
+    if (!togloom_idewhtei) return;
+
+    if (odoogiin_ug.includes(useg)) {
+        const haiurtsguud = document.querySelectorAll('.letter-box');
+        let oldsongui = false;
+        for (let i = 0; i < odoogiin_ug.length; i++) {
+            if (odoogiin_ug[i] === useg && !haiurtsguud[i].classList.contains('filled')) {
+                haiurtsguud[i].textContent = useg;
+                haiurtsguud[i].classList.add('filled');
+                oldsongui = true;
+                break; 
+            }
+        }
+
+        if (!oldsongui) {
+            towch.disabled = true;
+            darsan_usguud.push(useg);
+        }
+
+        if (hojson_uu()) {
+            togloom_idewhtei = false;
+            onoo += 10;
+            onoo_span.textContent = onoo;
+            togloomiin_message.textContent = 'Ta ylla hh!';
+            togloomiin_message.className = 'game-message win';
+            daraagiin_towch.classList.remove('hidden');
+        }
+    } else {
+        if (!darsan_usguud.includes(useg)) {
+            darsan_usguud.push(useg);
+            towch.disabled = true;
+            
+            aldaa++;
+            aldaa_span.textContent = aldaa;
+            
+            hangman_zurag_elem.src = hangman_zurag[aldaa];
+
+            if (aldaa >= 5) {
+                togloom_idewhtei = false;
+                togloomiin_message.textContent = ` Togloom duuslaa! Hariult bol: ${odoogiin_ug}`;
+                togloomiin_message.className = 'game-message lose';
+                hariult_haruulah();
+                daraagiin_towch.classList.remove('hidden');
+            }
+        }
+    }
+}
+
+function hojson_uu() {
+    for (let i = 0; i < odoogiin_ug.length; i++) {
+        if (odoogiin_ug[i] !== ' ') {
+            const haiurtsag = document.querySelector(`.letter-box[data-index="${i}"]`);
+            if (!haiurtsag.classList.contains('filled')) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+function hariult_haruulah() {
+    const haiurtsguud = document.querySelectorAll('.letter-box');
+    for (let i = 0; i < odoogiin_ug.length; i++) {
+        if (odoogiin_ug[i] !== ' ') {
+            haiurtsguud[i].textContent = odoogiin_ug[i];
+            haiurtsguud[i].classList.add('filled');
+            haiurtsguud[i].style.background = '#dc3545';
+        }
+    }
+}
+
+function togloom_duusgah() {
+    asuult_text.textContent = `Тоглоом дууслаа! Таны эцсийн оноо: ${onoo}/50`;
+    hariult_hairtsag.innerHTML = '';
+    keyboard_container.innerHTML = '';
+    togloomiin_message.textContent = onoo >= 30 ? '🏆 Маш сайн!' : onoo >= 20 ? '👍 Сайн!' : '💪 Дахин оролдоорой!';
+    togloomiin_message.className = 'game-message win';
+    daraagiin_towch.classList.add('hidden');
+    dahin_ehle_towch.classList.remove('hidden');
+}
+
+daraagiin_towch.addEventListener('click', () => {
+    odoogiin_asuult_index++;
+    togloom_ehluuleh();
+});
+
+dahin_ehle_towch.addEventListener('click', () => {
+    odoogiin_asuult_index = 0;
+    onoo = 0;
+    onoo_span.textContent = onoo;
+    dahin_ehle_towch.classList.add('hidden');
+    togloom_ehluuleh();
+});
+togloom_ehluuleh();
+</script>
+</body>
+</html>
