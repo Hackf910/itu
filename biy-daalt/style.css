@@ -25,9 +25,8 @@ body{
     justify-content: start;
     align-items: center;
 }
-span{
+#garaltin-utga{
     font-size: 60px;
-    font-family: Verdana;
     margin-left: 10px;
 }
 .btns{
@@ -53,4 +52,18 @@ button:hover{
 }
 .uildel:hover{
     background-color: rgb(255, 60, 0);
+}
+@media screen and (max-width:768px) and (min-width:421px) {
+    body{
+        background:url(https://images.pexels.com/photos/16530777/pexels-photo-16530777/free-photo-of-mountain-range-in-snow-against-cloudy-sky.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500);
+        background-size: 100%;
+    }
+    button:hover{
+        background-color: orange;
+        color: black;
+    }
+    .uildel:hover{
+        background-color: blueviolet ;
+        color: black;
+    }
 }

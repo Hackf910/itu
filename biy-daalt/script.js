@@ -16,7 +16,27 @@ let shineTooEhlee = false; // үйлдэл дараад дараагийн то�
 
 function delgetsShinechleh() {
     garaltinh.textContent = odooUtga;
+
+    let urt = odooUtga.length;
+
+    // үндсэн хэмжээ
+    let anhniiSize = 60;
+
+    if (urt > 8) {
+        // тэмдэгт бүр нэмэгдэхэд 3px-аар багасгана
+        let shineSize = anhniiSize - (urt - 8) * 3;
+
+        // хамгийн багадаа 25px болгоё
+        if (shineSize < 25) shineSize = 25;
+
+        garaltinh.style.fontSize = shineSize + "px";
+    } else {
+        // 8-аас бага бол анхны хэмжээ рүү буцаана
+        garaltinh.style.fontSize = anhniiSize + "px";
+    }
 }
+
+
 
 // C товч – бүгдийг цэвэрлэх
 function buhniig_tseverleh() {
