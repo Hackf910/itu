@@ -1,38 +1,236 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="mn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>plapy-byrd-game</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Увс — Танин мэдэхүйн танилцуулга</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
-<body>
-    <div id="calculator">
-        <div id="display">
-            <span id="garaltin-utga">0</span>
-        </div>
-        <div class="btns">
-            <button class="uildel" id="c">C</button>
-            <button class="uildel" id="%">%</button>
-            <button class="uildel" id="/">/</button>
-            <button class="uildel" id="+">+</button>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button class="uildel" id="-">-</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button class="uildel" id="x">x</button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button class="uildel" id="=">=</button>
-            <button>0</button>
-            <button id=".">.</button>
-        </div>
-    </div>
 
-    <script src="script.js"></script>
+<body>
+  <a class="skip" href="#main">Үндсэн агуулга руу алгасах</a>
+
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><img src="https://cdn.gov.mn/public/8af0ee44-7e8d-4592-8260-2ea1f7c61132_Увс_лого(1).webp" alt="uvs logo"></div>
+        <div class="brand-text">
+          <div class="brand-title">Увс</div>
+          <div class="brand-subtitle">Танин мэдэхүйн богино танилцуулга</div>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="Үндсэн цэс">
+        <a href="#intro">Товч</a>
+        <a href="#topics">Сэдвүүд</a>
+        <a href="#places">Очих газрууд</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="intro">
+      <div class="container hero-grid">
+        <div>
+          <h1>Увс аймаг — Байгаль, соёл, газарзүйн онцлог</h1>
+          <div class="hero-actions">
+            <div class="search-wrap">
+              <label class="sr-only" for="q">Сэдэв хайх</label>
+              <input id="q" type="search" placeholder="Жишээ: нуур, уур амьсгал, соёл..." autocomplete="off" />
+              <button id="clearBtn" class="btn btn-ghost" type="button">Цэвэрлэх</button>
+            </div>
+            <button id="saveAllBtn" class="btn" type="button">Одоогийн харагдаж буй сэдвүүдийг хадгалах</button>
+          </div>
+
+          <div class="meta">
+            <span id="matchCount">—</span>
+            <span class="dot" aria-hidden="true"></span>
+            <span id="savedCount">Хадгалсан: 0</span>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Түргэн удирдлага">
+          <h2 class="panel-title">Түргэн хэсгүүд</h2>
+          <ul class="quick">
+            <li><a href="#topics">Сэдвүүд рүү очих</a></li>
+            <li><a href="#places">Аяллын санаа</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="topics">
+      <div class="container">
+        <div class="section-head">
+          <h2>Сэдвүүд</h2>
+          <p class="section-sub">
+            Карт дээр дарж дэлгэрэнгүйг нээж/хаана. “Хадгалах” нь дараа дахин нээхэд хэвээр үлдэнэ.
+          </p>
+        </div>
+
+        <div class="grid" id="cards">
+          <!-- CARD 1 -->
+          <article class="card" data-tags="газарзүй нуур ай сав увс нуур" data-title="Увс нуурын хотгор ба нуурын ай сав">
+            <header class="card-head">
+              <h3>Увс нуурын хотгор</h3>
+              <div class="card-actions">
+                <button class="btn btn-ghost js-save" type="button">Хадгалах</button>
+                <button class="btn js-toggle" type="button" aria-expanded="false">Дэлгэрэнгүй</button>
+              </div>
+            </header>
+            <p class="card-summary">
+              Баруун Монголын томоохон хотгорын нэг. Давсархаг шинжтэй том нуур бүхий экосистемийн
+              цогц бүс гэж ойлгож болно.
+            </p>
+            <div class="card-body" hidden>
+              <ul class="bullets">
+                <li>Хотгорын бүсэд нуур, гол, элсэрхэг ба хээрийн экосистемүүд зэрэгцэн оршдог.</li>
+                <li>Нүүдлийн шувууд, ховор амьтан/ургамлын амьдрах орчин бүрддэгээрээ онцлог.</li>
+                <li>Нуурын эргэн тойронд улирлын салхи, чийгшил, температурын хэлбэлзэл мэдрэгддэг.</li>
+              </ul>
+              <p class="card-foot">Санал болгох уншлага: нуурын ай сав, экосистем, хотгорын үүсэл.</p>
+            </div>
+          </article>
+
+          <!-- CARD 2 -->
+          <article class="card" data-tags="уур амьсгал өвөл зун салхи хуурай" data-title="Уур амьсгалын ерөнхий онцлог">
+            <header class="card-head">
+              <h3>Уур амьсгал</h3>
+              <div class="card-actions">
+                <button class="btn btn-ghost js-save" type="button">Хадгалах</button>
+                <button class="btn js-toggle" type="button" aria-expanded="false">Дэлгэрэнгүй</button>
+              </div>
+            </header>
+            <p class="card-summary">
+              Эх газрын эрс тэс шинжтэй: өвөл хүйтэн, зун дулаан/халуун, чийг багатай үе олон.
+            </p>
+            <div class="card-body" hidden>
+              <ul class="bullets">
+                <li>Температурын улирлын хэлбэлзэл их тул хувцаслалт, аяллын улирал чухал.</li>
+                <li>Салхитай өдөр цөөнгүй: тоосжилт нэмэгдэх үе байдаг.</li>
+                <li>Усны нөөц ба бэлчээрийн төлөв уур амьсгалтай шууд холбоотой.</li>
+              </ul>
+              <p class="card-foot">Санал: “Уур амьсгал → амьжиргаа → нүүдэл, аж ахуй” холбоосоор тайлбарлаж сур.</p>
+            </div>
+          </article>
+
+          <!-- CARD 3 -->
+          <article class="card" data-tags="эдийн засаг мал аж ахуй газар тариалан худалдаа" data-title="Амьжиргаа ба эдийн засаг">
+            <header class="card-head">
+              <h3>Амьжиргаа, аж ахуй</h3>
+              <div class="card-actions">
+                <button class="btn btn-ghost js-save" type="button">Хадгалах</button>
+                <button class="btn js-toggle" type="button" aria-expanded="false">Дэлгэрэнгүй</button>
+              </div>
+            </header>
+            <p class="card-summary">
+              Баруун бүсийн олон аймагтай адил уламжлалт мал аж ахуй голлох байр суурь эзэлдэг.
+            </p>
+            <div class="card-body" hidden>
+              <ul class="bullets">
+                <li>Бэлчээр ашиглалт: улирлын шилжилт, усан хангамж, өвс тэжээлээс ихээхэн хамаарна.</li>
+                <li>Хот, сумын төвийн үйлчилгээ, худалдаа, жижиг үйлдвэрлэл зэрэг нь орон нутгийн эдийн засгийг дэмждэг.</li>
+                <li>Аялал жуулчлалын боломж нь байгаль, соёлын өв дээр түшиглэж хөгжих боломжтой.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- CARD 4 -->
+          <article class="card" data-tags="соёл уламжлал хэл хөгжим наадам" data-title="Соёл, уламжлал">
+            <header class="card-head">
+              <h3>Соёл, уламжлал</h3>
+              <div class="card-actions">
+                <button class="btn btn-ghost js-save" type="button">Хадгалах</button>
+                <button class="btn js-toggle" type="button" aria-expanded="false">Дэлгэрэнгүй</button>
+              </div>
+            </header>
+            <p class="card-summary">
+              Баруун Монголын өвөрмөц өнгө төрхтэй бүс. Аялгуу, зан үйл, ахуй соёлын олон давхаргатай.
+            </p>
+            <div class="card-body" hidden>
+              <ul class="bullets">
+                <li>Нутгийн аялгуу, аман уламжлал нь ахуй амьдралтай нягт холбоотой байдаг.</li>
+                <li>Наадам, баяр ёслол нь хамтын нэгдэл, өв соёлыг дамжуулах гол суваг болдог.</li>
+                <li>Гар урлал, ахуйн хэрэглэл нь орчны нөхцөлд тохирсон практик шийдэлтэй.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- CARD 5 -->
+          <article class="card" data-tags="биологийн олон янз байдал шувуу ан амьтан байгаль хамгаалал" data-title="Байгаль хамгаалал ба био олон янз байдал">
+            <header class="card-head">
+              <h3>Байгаль хамгаалал</h3>
+              <div class="card-actions">
+                <button class="btn btn-ghost js-save" type="button">Хадгалах</button>
+                <button class="btn js-toggle" type="button" aria-expanded="false">Дэлгэрэнгүй</button>
+              </div>
+            </header>
+            <p class="card-summary">
+              Нуур, намгархаг бүс, хээр тал хосолсон тул шувуу ажиглалт, экосистемийн судалгаанд сонирхолтой.
+            </p>
+            <div class="card-body" hidden>
+              <ul class="bullets">
+                <li>Нүүдлийн шувуудын улирлын хөдөлгөөн ажиглагддаг бүсүүд бий.</li>
+                <li>Бэлчээрийн даац, усны менежмент нь хамгааллын үндсэн асуудлуудын нэг.</li>
+                <li>Хог хаягдал, зам дагуух нөлөөлөл зэрэг нь аялал жуулчлалтай хамт анхаарах сэдэв.</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- CARD 6 -->
+          <article class="card" data-tags="хот суурин улаангом түүх боловсрол" data-title="Төв суурин ба орон нутгийн амьдрал">
+            <header class="card-head">
+              <h3>Төв суурин, өдөр тутмын амьдрал</h3>
+              <div class="card-actions">
+                <button class="btn btn-ghost js-save" type="button">Хадгалах</button>
+                <button class="btn js-toggle" type="button" aria-expanded="false">Дэлгэрэнгүй</button>
+              </div>
+            </header>
+            <p class="card-summary">
+              Аймгийн төв, сумдын үйлчилгээ, боловсрол, эрүүл мэнд, соёлын байгууллагууд нутгийн хөгжилд гол нөлөөтэй.
+            </p>
+            <div class="card-body" hidden>
+              <ul class="bullets">
+                <li>Сургууль, номын сан, соёлын төвүүд нь танин мэдэхүйн орчны гол цэгүүд.</li>
+                <li>Хот-хөдөөгийн холбоо: худалдаа, үйлчилгээ, тээвэр логистикоор илэрдэг.</li>
+                <li>Орон нутгийн мэдээлэл түгээх арга нь уламжлалт ба дижитал хэлбэр хосолдог.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="places">
+      <div class="container">
+        <div class="section-head">
+          <h2>Очих газруудын санаа</h2>
+        </div>
+
+        <div class="places">
+          <div class="place">
+            <h3>Нуурын эрэг ба шувуу ажиглалт</h3>
+            <p>Өглөө/оройн цагт намгархаг бүсийн шувуу ажиглалт хийхэд тохиромжтой өдрүүд олон.</p>
+          </div>
+          <div class="place">
+            <h3>Хот, музей, орон нутгийн соёлын төв</h3>
+            <p>Түүх, ахуй соёлыг нэг дороос ойлгох хамгийн хурдан арга.</p>
+          </div>
+          <div class="place">
+            <h3>Хөдөөгийн ахуйтай танилцах</h3>
+            <p>Улирлын нүүдэл, бэлчээрийн амьдрал, ахуйн зохион байгуулалтыг бодитоор харах боломж.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p class="muted">© <span id="year"></span> Увс — Танин мэдэхүйн танилцуулга</p>
+      <a class="to-top" href="#top">Дээш очих</a>
+    </div>
+  </footer>
 </body>
 </html>

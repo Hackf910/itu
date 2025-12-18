@@ -1,145 +1,215 @@
-let garaltinh = document.getElementById("garaltin-utga");
-let buhTovch = document.getElementsByTagName("button");
+const $ = (sel, root = document) => root.querySelector(sel);
+const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-let uildelC = document.getElementById("c");
-let uldegteltei = document.getElementById("%");
-let buhelHuvah = document.getElementById("/");
-let Nemeh = document.getElementById("+");
-let Hasah = document.getElementById("-");
-let Urjih = document.getElementById("x");
-let Tentsu = document.getElementById("=");
+const STORAGE_KEY = "uvs_saved_topics_v1";
 
-let odooUtga = "0";      // дэлгэц дээр харагдаж байгаа утга (string)
-let huuchinUtga = null;  // өмнөх (first) тоо
-let odooUildel = null;   // + - x / гэх мэт
-let shineTooEhlee = false; // үйлдэл дараад дараагийн тоо эхлэх үед true болно
-
-function delgetsShinechleh() {
-    garaltinh.textContent = odooUtga;
-
-    let urt = odooUtga.length;
-
-    // үндсэн хэмжээ
-    let anhniiSize = 60;
-
-    if (urt > 8) {
-        // тэмдэгт бүр нэмэгдэхэд 3px-аар багасгана
-        let shineSize = anhniiSize - (urt - 8) * 3;
-
-        // хамгийн багадаа 25px болгоё
-        if (shineSize < 25) shineSize = 25;
-
-        garaltinh.style.fontSize = shineSize + "px";
-    } else {
-        // 8-аас бага бол анхны хэмжээ рүү буцаана
-        garaltinh.style.fontSize = anhniiSize + "px";
-    }
+function loadSaved() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
 }
 
-
-
-// C товч – бүгдийг цэвэрлэх
-function buhniig_tseverleh() {
-    odooUtga = "0";
-    huuchinUtga = null;
-    odooUildel = null;
-    shineTooEhlee = false;
-    delgetsShinechleh();
+function saveSaved(list) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
 }
 
-// Товч бүрт click эвент өгнө
-for (let i = 0; i < buhTovch.length; i++) {
-    buhTovch[i].addEventListener("click", function () {
-        let text = this.textContent;
-        if (this.id === "c") {
-            buhniig_tseverleh();
-            return;
-        }
-        if (text === "=") {
-            tootsooloh();
-            odooUildel = null;
-            shineTooEhlee = true;
-            return;
-        }
-        if (text === "%") {
-            let too = parseFloat(odooUtga);
-            if (!isNaN(too)) {
-                odooUtga = String(too / 100);
-                delgetsShinechleh();
-            }
-            return;
-        }
-        if (text === "+" || text === "-" || text === "x" || text === "/") {
-            uildelDaralt(text);
-            return;
-        }
-        if (text === ".") {
-            taslalDaralt();
-            return;
-        }
-        tooDaralt(text);
+function normalize(s) {
+  return (s || "")
+    .toString()
+    .trim()
+    .toLowerCase();
+}
+
+function cardId(card) {
+  // тогтвортой id: title + tags
+  const t = card.dataset.title || card.querySelector("h3")?.textContent || "untitled";
+  const tags = card.dataset.tags || "";
+  return normalize(t) + "|" + normalize(tags);
+}
+
+function renderSavedList(savedIds, cards) {
+  const savedList = $("#savedList");
+  const savedCount = $("#savedCount");
+
+  savedCount.textContent = `Хадгалсан: ${savedIds.length}`;
+
+  if (!savedIds.length) {
+    savedList.innerHTML = `<li class="muted">Одоогоор хадгалсан зүйл алга.</li>`;
+    return;
+  }
+
+  const items = savedIds
+    .map(id => cards.find(c => cardId(c) === id))
+    .filter(Boolean)
+    .map(card => {
+      const title = card.querySelector("h3")?.textContent?.trim() || "Сэдэв";
+      const anchor = `t-${hashCode(id)}`;
+      card.id = anchor;
+      return `
+        <li class="saved-item">
+          <a href="#${anchor}">${escapeHtml(title)}</a>
+          <button class="btn btn-ghost js-unsave" data-id="${escapeHtml(id)}" type="button">Устгах</button>
+        </li>
+      `;
+    })
+    .join("");
+
+  savedList.innerHTML = items;
+}
+
+function hashCode(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = (h << 5) - h + str.charCodeAt(i);
+    h |= 0;
+  }
+  return Math.abs(h).toString(16);
+}
+
+function escapeHtml(s) {
+  return (s || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function setMatchCount(visible, total) {
+  const el = $("#matchCount");
+  el.textContent = `Харагдаж буй сэдэв: ${visible}/${total}`;
+}
+
+function filterCards(q, cards) {
+  const query = normalize(q);
+  let visible = 0;
+
+  cards.forEach(card => {
+    const title = normalize(card.dataset.title || card.querySelector("h3")?.textContent);
+    const tags = normalize(card.dataset.tags || "");
+    const hit = !query || title.includes(query) || tags.includes(query);
+
+    card.style.display = hit ? "" : "none";
+    if (hit) visible++;
+  });
+
+  setMatchCount(visible, cards.length);
+  return visible;
+}
+
+function wireCardToggles(cards) {
+  cards.forEach(card => {
+    const btn = $(".js-toggle", card);
+    const body = $(".card-body", card);
+
+    btn.addEventListener("click", () => {
+      const isOpen = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!isOpen));
+      body.hidden = isOpen;
+      btn.textContent = isOpen ? "Дэлгэрэнгүй" : "Хаах";
     });
+  });
 }
 
-function tooDaralt(too) {
-    // Хэрвээ шинээр тоо эхлэж байвал өмнөхийг арилгана
-    if (odooUtga === "0" || shineTooEhlee) {
-        odooUtga = too;
-        shineTooEhlee = false;
-    } else {
-        odooUtga += too;
+function wireSaving(cards) {
+  let saved = loadSaved();
+
+  const updateAllSaveButtons = () => {
+    cards.forEach(card => {
+      const id = cardId(card);
+      const saveBtn = $(".js-save", card);
+      const isSaved = saved.includes(id);
+      saveBtn.textContent = isSaved ? "Хадгалсан" : "Хадгалах";
+    });
+  };
+
+  const rerender = () => {
+    renderSavedList(saved, cards);
+    updateAllSaveButtons();
+  };
+
+  // single save buttons
+  cards.forEach(card => {
+    const saveBtn = $(".js-save", card);
+    saveBtn.addEventListener("click", () => {
+      const id = cardId(card);
+      if (!saved.includes(id)) {
+        saved.push(id);
+      } else {
+        saved = saved.filter(x => x !== id);
+      }
+      saveSaved(saved);
+      rerender();
+    });
+  });
+
+  // bulk save visible
+  $("#saveAllBtn").addEventListener("click", () => {
+    const visibleCards = cards.filter(c => c.style.display !== "none");
+    const ids = visibleCards.map(cardId);
+    let changed = false;
+
+    ids.forEach(id => {
+      if (!saved.includes(id)) {
+        saved.push(id);
+        changed = true;
+      }
+    });
+
+    if (changed) {
+      saveSaved(saved);
+      rerender();
     }
-    delgetsShinechleh();
+  });
+
+  // clear saved
+  $("#clearSavedBtn").addEventListener("click", () => {
+    saved = [];
+    saveSaved(saved);
+    rerender();
+  });
+
+  // unsave from list (event delegation)
+  $("#savedList").addEventListener("click", (e) => {
+    const btn = e.target.closest(".js-unsave");
+    if (!btn) return;
+    const id = btn.getAttribute("data-id");
+    saved = saved.filter(x => x !== id);
+    saveSaved(saved);
+    rerender();
+  });
+
+  rerender();
 }
 
-function taslalDaralt() {
-    if (shineTooEhlee) {
-        // шинээр тоо эхлэх гэж байхад . дарвал "0." гэж эхлүүлье
-        odooUtga = "0.";
-        shineTooEhlee = false;
-    } else if (!odooUtga.includes(".")) {
-        odooUtga += ".";
-    }
-    delgetsShinechleh();
+function initSearch(cards) {
+  const q = $("#q");
+  const clearBtn = $("#clearBtn");
+
+  const run = () => filterCards(q.value, cards);
+
+  q.addEventListener("input", run);
+  clearBtn.addEventListener("click", () => {
+    q.value = "";
+    q.focus();
+    run();
+  });
+
+  // initial
+  run();
 }
 
-function uildelDaralt(temdeg) {
-    let too = parseFloat(odooUtga);
+function init() {
+  $("#year").textContent = new Date().getFullYear();
 
-    if (huuchinUtga === null) {
-        huuchinUtga = too;
-    } else if (!shineTooEhlee) {
-        tootsooloh();
-    }
-
-    odooUildel = temdeg;
-    shineTooEhlee = true;
+  const cards = $$("#cards .card");
+  wireCardToggles(cards);
+  initSearch(cards);
+  wireSaving(cards);
 }
 
-function tootsooloh() {
-    if (odooUildel === null || huuchinUtga === null) return;
-
-    let odoogiinToo = parseFloat(odooUtga);
-    if (isNaN(odoogiinToo)) return;
-
-    let hariu = huuchinUtga;
-
-    switch (odooUildel) {
-        case "+":
-            hariu = huuchinUtga + odoogiinToo;
-            break;
-        case "-":
-            hariu = huuchinUtga - odoogiinToo;
-            break;
-        case "x":
-            hariu = huuchinUtga * odoogiinToo;
-            break;
-        case "/":
-            hariu = odoogiinToo === 0 ? "Error" : huuchinUtga / odoogiinToo;
-            break;
-    }
-
-    odooUtga = String(hariu);
-    huuchinUtga = (hariu === "Error") ? null : hariu;
-    delgetsShinechleh();
-}
+document.addEventListener("DOMContentLoaded", init);
